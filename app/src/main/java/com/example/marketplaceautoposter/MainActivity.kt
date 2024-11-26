@@ -1,47 +1,58 @@
 package com.example.marketplaceautoposter
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.marketplaceautoposter.ui.theme.MarketplaceAutoPosterTheme
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+
+
+    private lateinit var titleInput: EditText
+    private lateinit var priceInput: EditText
+    private lateinit var descriptionInput: EditText
+    private lateinit var selectImageButton: Button
+    private lateinit var submitButton: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            MarketplaceAutoPosterTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+        setContentView(R.layout.activity_main)
+
+        // Initialize UI elements
+        titleInput = findViewById(R.id.titleInput)
+        priceInput = findViewById(R.id.priceInput)
+        descriptionInput = findViewById(R.id.descriptionInput)
+        selectImageButton = findViewById(R.id.selectImageButton)
+        submitButton = findViewById(R.id.submitButton)
+
+        // Set up button click listeners
+        selectImageButton.setOnClickListener {
+            // Placeholder for image selection (we will use random images or gallery later)
+            Toast.makeText(this, "Image selected (simulated).", Toast.LENGTH_SHORT).show()
+        }
+
+        submitButton.setOnClickListener {
+            // Simulate post submission
+            submitPost()
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+    private fun submitPost() {
+        val title = titleInput.text.toString()
+        val price = priceInput.text.toString()
+        val description = descriptionInput.text.toString()
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MarketplaceAutoPosterTheme {
-        Greeting("Android")
+        if (title.isEmpty() || price.isEmpty() || description.isEmpty()) {
+            Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Simulate post submission to Facebook Marketplace
+        Toast.makeText(this, "Post Scheduled!", Toast.LENGTH_SHORT).show()
+
+        // You can later schedule a real background job here using WorkManager or any other background task
     }
 }

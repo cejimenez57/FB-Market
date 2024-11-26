@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">MarketplaceAutoPoster</string>
+    <string name="title">Title</string>
+    <string name="price">Price</string>
+    <string name="enter_price">Price</string>
+    <string name="description">Description</string>
+    <string name="enter_description">Enter Description</string>
+    <string name="enter_tile">Enter Title</string>
+    <string name="select_image">Select Image</string>
+    <string name="submit_post">Submit Post</string>
 </resources>
+
+
